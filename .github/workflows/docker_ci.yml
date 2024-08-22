@@ -19,7 +19,7 @@ on:
       DockerPath:
         description: 'Provide the Docker Pathj Relative to Git'
         required: true
-        default: 'app/Dockerfile'
+        default: 'Dockerfile'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -40,9 +40,9 @@ jobs:
       # Build the Docker Image
       - run: echo "${{ github.workspace }}"
       - run: ls -al
-      - run: pwd
+      - run: pwd && cd app
       - run: |
-          docker build ${{ github.workspace }}/${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
+          docker build ${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }} .
           
       # Publish the Docker Image to ACR
       - run: |
