@@ -42,7 +42,7 @@ jobs:
       - run: ls -al
       - run: pwd && cd app
       - run: |
-          docker build ${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }} .
+          docker buildx build ${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }} .
           
       # Publish the Docker Image to ACR
       - run: |
