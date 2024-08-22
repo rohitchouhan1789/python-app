@@ -38,8 +38,11 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       # Build the Docker Image
+      - run: echo "${{ github.workspace }}"
+      - run: ls -al
+      - run: pwd
       - run: |
-          docker build ${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
+          docker build ${{ github.workspace }}/${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
           
       # Publish the Docker Image to ACR
       - run: |
