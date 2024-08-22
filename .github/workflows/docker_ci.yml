@@ -38,6 +38,9 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       # Build the Docker Image
+      - run: echo "${{ github.workspace }}"
+      - run: ls -la
+      - run: pwd
       - run: |
           docker build ${{ github.workspace }}/${{ github.event.inputs.DockerPath }} -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
           
