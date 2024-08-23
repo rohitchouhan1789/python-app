@@ -46,5 +46,5 @@ jobs:
       # Publish the Docker Image to ACR
       # - run: |
       #     docker push ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
-      # - run: |
-      #     docker push ${{ secrets.REGISTRY_USERNAME }}/${{ secrets.ACR_SERVER }}:${{ github.event.inputs.ImageVersion }}
+      - run: |
+          docker push ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }}
