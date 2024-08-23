@@ -40,7 +40,7 @@ jobs:
       # Build the Docker Image
       - run: ls -al
       - run: |
-          docker build -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }} ${{ github.event.inputs.DockerPath }} .
+          docker build -t ${{ secrets.ACR_SERVER }}/${{ github.event.inputs.ImageName }}:${{ github.event.inputs.ImageVersion }} -f ${{ github.event.inputs.DockerPath }} .
           
       # Publish the Docker Image to ACR
       - run: |
